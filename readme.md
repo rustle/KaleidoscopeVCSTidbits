@@ -4,6 +4,8 @@ Some fun ways to make version control and Kaleidoscope dance.
 
 Everything is git right now, but glad to take pull requests for other kinds of VCS.
 
+These all assume you've configured Kaleidoscope as your default git difftool. If you use it as a non default tool, you'd change git difftool to git ksdiff, but the rest is the same.
+
 ##KSReview
 
 KSReview is a useful way to do codereviews of feature branches. It will send all the work done on a feature branch since it diverged from master or a specified mainline branch to Kaleidoscope.
