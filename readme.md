@@ -4,7 +4,7 @@ Some fun ways to make version control and Kaleidoscope dance.
 
 Everything is git right now, but glad to take pull requests for other kinds of VCS.
 
-These all assume you've configured Kaleidoscope as your default git difftool. If you use it as a non default tool, you'd change git difftool to git ksdiff, but the rest is the same.
+These all assume you've configured Kaleidoscope as your default git difftool. If you use it as a non default tool, you'd change `git difftool` to `git difftool -y -t Kaleidoscope`, but the rest is the same.
 
 ##KSReview
 
