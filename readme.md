@@ -4,7 +4,7 @@ Some fun ways to make version control and Kaleidoscope dance.
 
 Everything is git right now, but glad to take pull requests for other kinds of VCS.
 
-These all assume you've configured Kaleidoscope as your default git difftool. If you use it as a non default tool, you'd change `git difftool` to `git difftool -y -t Kaleidoscope`, but the rest is the same.
+Many of these examples assume you've configured Kaleidoscope as your default git difftool. If you use it as a non default tool, you'd change `git difftool` to `git difftool -y -t Kaleidoscope`, but the rest is the same.
 
 ##KSReview
 
@@ -55,3 +55,21 @@ To open the most recent commit on the current branch in Kaleidoscope
 To open an arbitrary sha in Kaleidoscope
 
 `git ksshow some-sha`
+
+##KSDiff
+
+KSDiff is just a more compact version of `difftool -y -t Kaleidoscope` for people who don't use Kaleidoscope as the default difftool.
+
+__Git Alias__
+
+`ksdiff = difftool -y -t Kaleidoscope`
+
+__Git One liner__
+
+`git config --global alias.ksdiff "difftool -y -t Kaleidoscope"`
+
+__Git Usage__
+
+To see the contents of the most recent commit
+
+`git ksdiff HEAD^..HEAD`
