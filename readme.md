@@ -4,19 +4,20 @@ Some fun ways to make version control and Kaleidoscope dance.
 
 Everything is git right now, but glad to take pull requests for other kinds of VCS.
 
-Many of these examples assume you've configured Kaleidoscope as your default git difftool. If you use it as a non default tool, you'd change `git difftool` to `git difftool -y -t Kaleidoscope`, but the rest is the same.
-
 ##KSReview
 
 KSReview is a useful way to do codereviews of feature branches. It will send all the work done on a feature branch since it diverged from master or a specified mainline branch to Kaleidoscope.
 
 __Git Alias__
 
-`ksreview = "!sh -c 'SHA=${1:-HEAD}; BRANCH=${2:-master}; if [ $SHA == $BRANCH ] ; then SHA=HEAD; fi; BASE_SHA=$(git merge-base $BRANCH $SHA); git difftool $BASE_SHA $SHA;' -"`
+`ksreview = "!sh -c 'SHA=${1:-HEAD}; BRANCH=${2:-master}; if [ $SHA == $BRANCH ] ; then SHA=HEAD; fi; git difftool -y -t Kaleidoscope $BRANCH...$SHA;' -"`
 
-__Git One liner__
+__Git One Liner__
 
-`git config --global alias.ksreview "\!sh -c 'SHA=\${1:-HEAD}; BRANCH=\${2:-master}; if [ \$SHA == \$BRANCH ] ; then SHA=HEAD; fi; BASE_SHA=\$(git merge-base \$BRANCH \$SHA); git difftool \$BASE_SHA \$SHA;' -"`
+
+`git config --global alias.ksreview "\!sh -c 'SHA=\${1:-HEAD}; BRANCH=\${2:-master}; if [ \$SHA == \$BRANCH ] ; then SHA=HEAD; fi; git difftool -y -t Kaleidoscope \$BRANCH...\$SHA;' -"`
+
+(Works in zsh, escapes \!sh incorrectly in bash, your mileage may vary)
 
 __Git Usage__
 
@@ -40,11 +41,13 @@ KSShow gives you the contents of an arbitrary sha in Kaleidoscope.
 
 __Git Alias__
 
-`ksshow = "!sh -c 'SHA=${1:-HEAD}; git difftool $SHA^..$SHA;' -"`
+`ksshow = "!sh -c 'SHA=${1:-HEAD}; git difftool -y -t Kaleidoscope $SHA^..$SHA;' -"`
 
-__Git One liner__
+__Git One Liner__
 
-`git config --global alias.ksshow "\!sh -c 'SHA=\${1:-HEAD}; git difftool \$SHA^..\$SHA;' -"`
+`git config --global alias.ksshow "\!sh -c 'SHA=\${1:-HEAD}; git difftool -y -t Kaleidoscope \$SHA^..\$SHA;' -"`
+
+(Works in zsh, escapes \!sh incorrectly in bash, your mileage may vary)
 
 __Git Usage__
 
@@ -64,7 +67,7 @@ __Git Alias__
 
 `ksdiff = difftool -y -t Kaleidoscope`
 
-__Git One liner__
+__Git One Liner__
 
 `git config --global alias.ksdiff "difftool -y -t Kaleidoscope"`
 
@@ -73,3 +76,19 @@ __Git Usage__
 To see the contents of the most recent commit
 
 `git ksdiff HEAD^..HEAD`
+
+##Notes
+
+A coworker of mine pointed out that it might be nice to give some of these more idiomatic git like names, so for people that like that kind of thing:
+
+ksreview becomes
+
+	`review = "!sh -c 'SHA=${1:-HEAD}; BRANCH=${2:-develop}; if [ $SHA == $BRANCH ] ; then SHA=HEAD; fi; git diff $BRANCH...$SHA;' -"`
+
+and
+
+	`reviewtool = "!sh -c 'SHA=${1:-HEAD}; BRANCH=${2:-develop}; if [ $SHA == $BRANCH ] ; then SHA=HEAD; fi; git difftool -y -t Kaleidoscope $BRANCH...$SHA;' -"`
+
+ksshow becomes
+
+	`showtool = "!sh -c 'SHA=${1:-HEAD}; git difftool -y -t Kaleidoscope $SHA^..$SHA;' -"`
