@@ -15,9 +15,7 @@ __Git Alias__
 __Git One Liner__
 
 
-`git config --global alias.ksreview "\!sh -c 'SHA=\${1:-HEAD}; BRANCH=\${2:-master}; if [ \$SHA == \$BRANCH ] ; then SHA=HEAD; fi; git difftool -y -t Kaleidoscope \$BRANCH...\$SHA;' -"`
-
-(Works in zsh, escapes \!sh incorrectly in bash, your mileage may vary)
+`git config --global alias.ksreview '!f() { local SHA=${1:-HEAD}; local BRANCH=${2:-master}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool -y -t Kaleidoscope $BRANCH...$SHA; }; f'`
 
 __Git Usage__
 
@@ -45,9 +43,7 @@ __Git Alias__
 
 __Git One Liner__
 
-`git config --global alias.ksshow "\!sh -c 'SHA=\${1:-HEAD}; git difftool -y -t Kaleidoscope \$SHA^..\$SHA;' -"`
-
-(Works in zsh, escapes \!sh incorrectly in bash, your mileage may vary)
+`git config --global alias.ksshow "!f() { local SHA=\${1:-HEAD}; git difftool -y -t Kaleidoscope \$SHA^..\$SHA; }; f"`
 
 __Git Usage__
 
