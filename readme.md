@@ -43,7 +43,7 @@ __Git Alias__
 
 __Git One Liner__
 
-`git config --global alias.ksshow '!f() { local SHA=\${1:-HEAD}; git difftool -y -t Kaleidoscope \$SHA^..\$SHA; }; f'`
+`git config --global alias.ksshow '!f() { local SHA=${1:-HEAD}; git difftool -y -t Kaleidoscope $SHA^..$SHA; }; f'`
 
 __Git Usage__
 
