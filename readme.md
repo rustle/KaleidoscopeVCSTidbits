@@ -1,10 +1,10 @@
-#Kaleidoscope Version Control Tidbits
+# Kaleidoscope Version Control Tidbits
 
 Some fun ways to make version control and Kaleidoscope dance.
 
 Everything is git right now, but glad to take pull requests for other kinds of VCS.
 
-##KSReview
+## KSReview
 
 KSReview is a useful way to do codereviews of feature branches. It will send all the work done on a feature branch since it diverged from master or a specified mainline branch to Kaleidoscope.
 
@@ -31,7 +31,7 @@ To review a branch (or sha) by name with a custom mainline branch
 
 `git ksreview some-feature-branch-or-sha mainline-branch`
 
-##KSShow
+## KSShow
 
 This one comes care of https://twitter.com/stevelosh/status/270931273214746625 with the addition of HEAD as a default value.
 
@@ -55,7 +55,7 @@ To open an arbitrary sha in Kaleidoscope
 
 `git ksshow some-sha`
 
-##KSDiff
+## KSDiff
 
 KSDiff is just a more compact version of `difftool -y -t Kaleidoscope` for people who don't use Kaleidoscope as the default difftool.
 
@@ -73,7 +73,7 @@ To see the contents of the most recent commit
 
 `git ksdiff HEAD^..HEAD`
 
-##Notes
+## Notes
 
 A coworker of mine pointed out that it might be nice to give some of these more idiomatic git like names, so for people that like that kind of thing:
 
